@@ -1,6 +1,14 @@
 package com.prison.entity;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.prison.DTO.CellDTO;
+
+
 import java.util.ArrayList;
 
 import jakarta.persistence.*;
@@ -48,6 +56,14 @@ public class CellEntity {
 	public void setPrisoners(List<PrisonerEntity> prisoners) {
 		this.prisoners = prisoners;
 	}
+	public CellEntity(Long id, Long cntPrisoners, String kindOfCell)
+	{
+		this.id = id;
+		this.cntPrisoners = cntPrisoners;
+		this.kindOfCell = kindOfCell;
+		
+	}
+	
 	 
 	
 }
