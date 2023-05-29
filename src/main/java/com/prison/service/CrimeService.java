@@ -12,7 +12,7 @@ import com.prison.entity.PrisonerEntity;
 import com.prison.repository.CellRepository;
 import com.prison.repository.CrimeRepository;
 import com.prison.repository.PrisonerRepository;
-
+import com.shop.dto.ProductDTO;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -48,10 +48,13 @@ public class CrimeService {
 	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	        }
 	    }
-	 public CrimeEntity addCrimeToPrisonerByid(CrimeEntity crime,Long prId) {
+	 public CrimeDTO addCrimeToPrisonerByid(CrimeEntity crime,Long prId) {
 		 
 		 
 	         PrisonerEntity prisoner = prisonerRepository.findById(prId);
+	         if(prisoner.getCrime()!=null) {
+	        	 return  DTO.toProductDto(productRepository.save(product));
+	         }
 	         
 	    }
 
