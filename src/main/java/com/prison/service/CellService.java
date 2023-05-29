@@ -74,14 +74,19 @@ public class CellService {
         }
     }
 	
-	public ResponseEntity<CellDTO> removeCell(Long id) {
+	public ResponseEntity<CellDTO> removeCell(Long remId, Long newId) {
         try {
-            CellEntity cell = cellRepository.findById(id).orElseThrow();
-
+            CellEntity cell = cellRepository.findById(remId).orElseThrow();
+            CellEntity newCell = cellRepository.findById(newId).orElseThrow();
+            
             List<PrisonerEntity> prisoners = cell.getPrisoners();
-
-            prisoners.removeAll(prisoners);
-
+            List<PrisonerEntity> newPrisoners = newCell.getPrisoners();
+            
+            if((newCell.getCellSize() - newCell.getCntPrisoners()) < prisoners.size()) {
+            	newPrisoners.addAll(prisoners);            	
+            }
+            prisoners.forEach(prisoner -> prisoner.setCell(newCell));
+            
             cellRepository.delete(cell);
 
             return ResponseEntity.ok().body(CellDTO.toCellDTO(cell));

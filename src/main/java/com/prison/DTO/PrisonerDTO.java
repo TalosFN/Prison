@@ -3,22 +3,23 @@ package com.prison.DTO;
 import com.prison.entity.CellEntity;
 import com.prison.entity.CrimeEntity;
 import com.prison.entity.PrisonerEntity;
+import java.util.List;
+import java.util.ArrayList;
 
 public class PrisonerDTO {
 	
 	private Long id;
 	private String name;
 	private Long termOfImprisonment;
-	private CrimeEntity crime; 
-	private CellEntity cell;
-	
+	private CrimeEntity crime;
+	private CellEntity cell;	
 	public PrisonerDTO(Long id, String name, Long termOfImprisonment,CrimeEntity crime, CellEntity cell) {
 		
-		this.setId(id);
-        this.setName(name);
-        this.setTermOfImprisonment(termOfImprisonment);
-        this.setCrime(crime);
-        this.setCell(cell);
+		this.id = id;
+        this.name = name;
+        this.termOfImprisonment = termOfImprisonment;
+        this.crime = crime;
+        this.cell = cell;
 	}
 
 	public Long getId() {
@@ -49,7 +50,7 @@ public class PrisonerDTO {
 		return crime;
 	}
 
-	public void setCrime(CrimeEntity crime) {
+	public void setCrime (CrimeEntity crime) {
 		this.crime = crime;
 	}
 

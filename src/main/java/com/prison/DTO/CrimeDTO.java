@@ -9,6 +9,7 @@ public class CrimeDTO {
 	private String article;
 	private String date;
 	private PrisonerEntity prisoner;
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +43,7 @@ public class CrimeDTO {
 		this.prisoner = prisoner;
 		
 	}
-	public CrimeDTO toCrimeDTO(CrimeEntity crime) {
+	public static CrimeDTO toCrimeDTO(CrimeEntity crime) {
 		
 		return new CrimeDTO(crime.getID(), crime.getArticle(), crime.getDate(), crime.getPrisoner());
 	}

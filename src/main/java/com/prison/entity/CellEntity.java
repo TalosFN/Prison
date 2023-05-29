@@ -32,6 +32,7 @@ public class CellEntity {
     private String kindOfCell;
     @OneToMany (mappedBy = "cell", fetch=FetchType.EAGER )//Вид камеры
     private List<PrisonerEntity> prisoners = new ArrayList<>();
+    private Long cellSize;
 	public Long getCntPrisoners() {
 		return cntPrisoners;
 	}
@@ -56,12 +57,19 @@ public class CellEntity {
 	public void setPrisoners(List<PrisonerEntity> prisoners) {
 		this.prisoners = prisoners;
 	}
-	public CellEntity(Long id, Long cntPrisoners, String kindOfCell)
+	public CellEntity(Long id, Long cntPrisoners, String kindOfCell, Long cellSize)
 	{
 		this.id = id;
 		this.cntPrisoners = cntPrisoners;
 		this.kindOfCell = kindOfCell;
+		this.cellSize = cellSize;
 		
+	}
+	public Long getCellSize() {
+		return cellSize;
+	}
+	public void setCellSize(Long cellSize) {
+		this.cellSize = cellSize;
 	}
 	
 	 
