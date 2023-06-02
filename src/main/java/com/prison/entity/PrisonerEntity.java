@@ -21,7 +21,7 @@ public class PrisonerEntity {
 	private String Name;
 	private Long TermOfImprisonment;  //Срок заключения
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "crimeEntity") 
     private CrimeEntity crime; 
 	@OneToOne(optional=false, cascade=CascadeType.ALL)

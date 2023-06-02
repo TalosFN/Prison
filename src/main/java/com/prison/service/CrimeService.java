@@ -12,7 +12,7 @@ import com.prison.entity.PrisonerEntity;
 import com.prison.repository.CellRepository;
 import com.prison.repository.CrimeRepository;
 import com.prison.repository.PrisonerRepository;
-import com.shop.dto.ProductDTO;
+
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,15 +32,7 @@ public class CrimeService {
         this.cellRepository = cellRepository;
     }
 	
-	 public ResponseEntity<CrimeEntity> getCrimeByPrisonerId(Long prId)
 	 
-	 {
-	        try {
-	            return ResponseEntity.ok().body(prisonerRepository.findById(prId).orElseThrow().getCrime());
-	        } catch (NoSuchElementException e) {
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-	        }
-	 }
 	 public ResponseEntity<CrimeDTO> crime(Long id) {
 	        try {
 	            return ResponseEntity.ok().body(CrimeDTO.toCrimeDTO(crimeRepository.findById(id).orElseThrow()));
@@ -48,15 +40,17 @@ public class CrimeService {
 	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	        }
 	    }
-	 public CrimeDTO addCrimeToPrisonerByid(CrimeEntity crime,Long prId) {
-		 
-		 
-	         PrisonerEntity prisoner = prisonerRepository.findById(prId);
-	         if(prisoner.getCrime()!=null) {
-	        	 return  DTO.toProductDto(productRepository.save(product));
-	         }
-	         
+	 public ResponseEntity<CrimeEntity> getCrimeByPrisonerId(Long prisonerId) {
+	        try {
+	            return ResponseEntity.ok().body(crimeRepository.findById(prisonerId).orElseThrow());
+	        } catch (NoSuchElementException e) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	        }
 	    }
+	 public CrimeDTO addCrime(CrimeEntity crime) {
+	        return CrimeDTO.toCrimeDTO(crimeRepository.save(crime));
+	    }
+	 
 
 	public ResponseEntity<CrimeDTO> updateCrime(CrimeEntity changedCrime, Long id) {
         try {

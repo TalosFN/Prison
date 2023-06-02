@@ -12,7 +12,6 @@ import com.prison.repository.CellRepository;
 import com.prison.repository.CrimeRepository;
 import com.prison.repository.PrisonerRepository;
 
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -52,15 +51,11 @@ public class CellService {
         }
     }
 	public CellDTO addCell(CellEntity cell) {
+		
         return CellDTO.toCellDTO(cellRepository.save(cell));
-    }
-	public ResponseEntity<List<PrisonerDTO>> getPrisonersByCellId(Long cellId) {
-        try {
-            return ResponseEntity.ok().body(cellRepository.findById(cellId).orElseThrow().getPrisoners().stream().map(PrisonerDTO::toPrisonerDTO).toList());
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
+    } 
+	
+
 	public ResponseEntity<CellDTO> updateCell(CellEntity changedCell, Long id) {
         try {
             CellEntity cell = cellRepository.findById(id).orElseThrow();
